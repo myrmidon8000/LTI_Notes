@@ -1,0 +1,95 @@
+-Compile time dependecies - class files or jar files required to compile our program.
+      --These can be from  some other vendor.
+
+-When we use Servlets, we require jar files of tomcat to compile and run our app. This jar file has HttpSession and other class we use.
+-Transitive Dependencies in JAR files exists.
+-Apache Maven is popular BUILD and PROJECT management tool.
+	--It manages all our java dependies aka dependency management is one of its main purpose.
+-Maven Repository/Maven Central is a library with all our required dependency/JAR files.
+-mvnrepository.com
+-Tomcat and Maven made by same group i.e. Apache.
+-Maven is built in Eclipse. Just search for it in preferences.
+-In Eclipse, while creating your maven project it will ask for version. Version is actually version number of our app. Eg: 1.0.1 or 3.0.2.
+-Packaging is what the 
+-src-main : for our main application.
+-src-test : for our test cases.  	
+-Resources should have all of our required resources
+-Java project made using Maven can be ported to any IDE. 
+-In pom.xml of your maven project, just right click-->Maven-->Add Dependency. Now just mention the Group Id,Artifact Id, Vesion and those Jar will be downloaded automatically.
+-With the JARs their signatures are downloaded too for verification of authenticity. 
+-Test depencies are ones that are required for test purposes only.
+- Project Structure:      Project Directory
+				/src
+					/main			Java Files
+					/resources		Non Java Files
+				/test
+					/main
+					/resources		Java Files
+								Non Java Files
+				/target	
+					Build Artifacts
+				pom.xml
+
+-pom.xml		Project Object Module
+			Meta data for entire project 
+			1.Project build Target
+			2.Project Group
+			3.Project Dependency
+			4.Pulgins (if any)	
+-Maven Clean: deletes all contents of target folder
+-Maven Build: compile project and create JAR for project.
+-Maven Test: ignores everything and runs code in src test java.
+- 
+
+-Maven Build phases
+--clean Delete everything from \target directory
+--compile:Compiles all java Files
+--test 1.Invokes "compile
+       2.Run all test cases
+       3.Prepare test report
+--package  1.Invokes "compile
+           2.Invokes "test"
+           3.Creates Jar or War
+-SureFire is a Maven Plugin responsible for creating maven reports.
+- groupId uniquely identifies your project across all projects, so we need to enforce a naming schema.
+- artifactId is the name of the jar without version. If you created it, then you can choose whatever name you want with lowercase letters and no strange symbols.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+- Create a Directory in D:
+- In the directory made open cmd.
+- Set Java Home using --> set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_131
+- Set Maven Home --> set M2_HOME=D:\Shaggy\Driver\apache-maven-3.6.0
+- Set Path--> set PATH=%PATH%;%M2_HOME%\bin
+- Check by giving command --> mvn
+- Create empty project by--> mvn archetype:generate -DgroupId=com.lti -DartifactId=demo1
+- When prompted just press enter					   
+- Go into the new project created as demo1. Why demo1? Because we have given it in -DartifactId.
+- apache-maven-3.6.0\conf\settings.xml ---> has all our settings. Give your approved mvn repository url here.
+- Run maven commands like test, build,run from the folder that contains pom.xml of your project.
+- First make a maven project aka Parent Maven with packaging style as pom.
+- In there make a new maven module aka child maven.
+- Child maven can be backend(servlet and jsp)
+- Child Maven can be frontend(angular)
+- Parent Module is our main application consisting of these child modules.
+- All dependencies of parent will be inherited by child.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-Annotations for Authentication in servlets. use @RolesAllowed 
+-Web.xml for Authentication in servlets.
+- AUTH_BASIC --> BASIC SECURITY PROVIDED BY JAVA. A FORM(inbuilt form) is DISPLAYED on the REQUEST of a servlet where we have specified basic_auth. Here user has to enter the correct id password meintioned in tomcat-users file(file is in conf folder of tomcat). IF entered correctly the servlet is displayed.
+- AUTH_DIGEST--> same except more secure as it uses hash to store the data and retrieve it. encryption takes place.
+- AUTH_CLIENT_CERTI
+- AUTH_FORM --> using form to take id password and performing checks using jsecuritycheck.
+- For from authentication <realm-name>file</realm-name> this now stores the authentication details in a file format.
+- Here in form authentication we are being redirected to another jsp which we specify. We are going from jsp to jsp. In background the j_securitycheck servlet is being called by tomcat to redirect us. 
+- in form store username and password as name="j_username" password="j_password".
+- j_password and j_username are j_securitycheck default names.
+- Install tomcat and open it on localhost.
+- Next export war file on desktop of your app.
+- Now on the opened localhost choose War to deploy and add your file.
+- ServletContext object lifecycle --> ContextInitialized and ContextDestroyed.
+- Listeners--> listen to events of ServletContext and Session.
+- Events for ServletContext can be init destroy setattribute. In case of session these can be add init destroy setattribute getattribute.
+- In java -->SOLID-->SingleResponsibility,Open/close,List of substituion principle,Interface Segregation,Dependency Inversion.
+- Listeners work on the priciple of Interface Segregation. 
+-
