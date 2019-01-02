@@ -1,0 +1,90 @@
+Maven: The most popular build and project management tool.
+It can manage all the dependencies of our Java projects.
+ 
+Maven central is a global secure repository with almost all jar files the application may require - TB in size. Huge.
+maven encourages test driven environment
+supporting files like xml should be kept in resources folder
+ 
+maven folder str is so uniq it allows same project files using multiple IDE's
+maven cannot work without jdk
+installed from zip
+ 
+right click in pom.xml > maven > add dependency > add dependency details like groupid, artifact id, version and click finish
+the required dependency jar file gets downloaded in the background automatically
+ 
+Dependency Hierarchy
+compile
+test - files needed only for test
+ 
+folder structure
+src/main/java:Java files
+        /resources:non java files
+           
+        /test/java: Java files
+             /resources: Non java files
+              build artefacts
+ 
+target
+pom.xml > meta data for the entire project
+1. project build target
+2. project group
+3. project dependencies
+4. plugins (if any)
+ 
+ 
+maven clean - removes the content of the target folder
+maven build - compiles the project and creates a jar package out of it
+maven test - ignores the main java files, instead goes to test files
+ 
+maven has lot of plugins but all of them are configured on on-demand mode
+makes sure your maven installations is as small as possible with only required files
+ 
+Maven build phases:
+clean: delete everything from target directory
+ 
+compile: compiles all java files
+ 
+test:   1. invokes "compile"
+        2. run all test cases
+        3. prepare test case report
+ 
+package:    1.invokes "compile"
+            2. invokes "test"
+            3. create jar / war files
+            //if any one / many test cases fail, then the jar file isn't created
+ 
+surefire is a maven plugin which generates test reports
+---
+hands on
+ 
+create directory maven demos on D:
+ 
+set java home:
+C:\Users\vshadmin>D:
+D:\>cd mavendemos
+D:\mavendemos>set JAVA_HOME = "C:\Program Files\Java\jdk1.8.0_131"
+ 
+set maven home
+D:\mavendemos>set M2_HOME = "D:\apache-maven-3.6.0"
+ 
+set path
+D:\mavendemos>set PATH=%PATH%;%M2_HOME%\bin
+or
+D:\mavendemos>set PATH=%PATH%;D:\apache-maven-3.6.0\bin
+ 
+ 
+D:\mavendemos>mvn archetype:generate -DgroupId=com.srj -DartifactId=demo1
+ 
+mvn compile
+mvn test
+ 
+in eclipse:
+ 
+create> maven project (parent) "multimodule"> (packaging type is not jar but pom)
+proj right click > new > maven module > "frontend "(war packaging)  -- child pom
+proj right click > new > maven module > "backend "(jar packaging)   --child pom
+ 
+all dependencies of parent will be inherited by the child
+ 
+clone from existing repository via cmd
+D:\mavendemos>D:\PortableGit\bin\git.exe clone https://github.com/mahendra-shinde/ci-demo3
